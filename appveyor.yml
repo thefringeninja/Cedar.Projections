@@ -1,0 +1,17 @@
+version: {build}
+
+os: Visual Studio 2015 CTP 6
+
+build_script: .\build.ps1
+
+test: off
+
+artifacts:
+  - path: build\*.nupkg
+
+  - provider: NuGet
+    server: https://www.myget.org/F/cedar/api/v2
+    api_key:
+      secure: OFKHH+6tRCSObkKF0J5XsgygWyP0piFEoCtwQE99iPzMtoum+a6i6LWhdIEe26Q5
+    on:
+      branch: master
