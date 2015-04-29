@@ -1,5 +1,5 @@
 properties {
-    $projectName            = "Cedar.Domain"
+    $projectName            = "Cedar.Projections"
     $buildNumber            = 0
     $rootDir                = Resolve-Path .\
     $buildOutputDir         = "$rootDir\build"
@@ -44,7 +44,7 @@ task RunTests -depends Compile {
     $testReportDirXmlFilePath = "$testReportDir\tests.xml"
     EnsureDirectory $testReportDir
 
-    .$xunitRunner "$srcDir\Cedar.Domain.Tests\bin\Release\Cedar.Domain.Tests.dll" -html "$testReportDir\index.html" -xml "$testReportDirXmlFilePath"
+    .$xunitRunner "$srcDir\Cedar.Projections.Tests\bin\Release\Cedar.Projections.Tests.dll" -html "$testReportDir\index.html" -xml "$testReportDirXmlFilePath"
 
     # Pretty-print the xml
     [Reflection.Assembly]::LoadWithPartialName("System.Xml.Linq")
@@ -54,8 +54,8 @@ task RunTests -depends Compile {
 task ILMerge -depends Compile {
     New-Item $mergedDir -Type Directory -ErrorAction SilentlyContinue
 
-    $mainDllName = "Cedar.Domain.dll"
-    $dllDir = "$srcDir\Cedar.Domain\bin\Release"
+    $mainDllName = "Cedar.Projections.dll"
+    $dllDir = "$srcDir\Cedar.Projections\bin\Release"
     $inputDlls = "$dllDir\$mainDllName"
     @(  "EnsureThat" ) |% { $inputDlls = "$inputDlls $dllDir\$_.dll" }
     Invoke-Expression "$ilmergePath /targetplatform:v4 /internalize /allowDup /target:library /log /out:$mergedDir\$mainDllName.dll $inputDlls"
@@ -83,9 +83,7 @@ function FindTool {
 }
 
 function Get-PackageConfigs {
-    $packages = gci $srcDir -Recurse "packages.config" -ea SilentlyContinue
-    $customPachage = gci $srcDir -Recurse "packages.*.config" -ea SilentlyContinue
-    $packages + $customPachage  | foreach-object { $_.FullName }
+    $packages = gci $srcDir -Recurse "packages.config" -ea SilentlyContinue | foreach-object { $_.FullName }
 }
 
 function EnsureDirectory {
