@@ -1,4 +1,4 @@
-version: {build}
+version: '{build}'
 
 os: Visual Studio 2015 CTP 6
 
@@ -9,6 +9,7 @@ test: off
 artifacts:
   - path: build\*.nupkg
 
+deploy:
   - provider: NuGet
     server: https://www.myget.org/F/cedar/api/v2
     api_key:
