@@ -21,7 +21,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;LIBLOG_PORTABLE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -34,13 +34,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="App_Packages\LibLog.4.2\LibLog.cs" />
+    <Compile Include="ICheckpointRepository.cs" />
+    <Compile Include="InterlockedBoolean.cs" />
+    <Compile Include="InterlockedBooleanExtensions.cs" />
+    <Compile Include="IProjectionHandlerBuilder.cs" />
+    <Compile Include="IProjectionHandlerResolver.cs" />
+    <Compile Include="ProjectionDispatcher.cs" />
+    <Compile Include="ProjectionEvent.cs" />
+    <Compile Include="ProjectionHandlerBuilderExtensions.cs" />
+    <Compile Include="ProjectionHandlerModule.cs" />
+    <Compile Include="ProjectionHandlerRegistration.cs" />
+    <Compile Include="ProjectionHandlerResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Internal\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
