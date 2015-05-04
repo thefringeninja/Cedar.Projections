@@ -1,4 +1,4 @@
-namespace Cedar.Handlers
+namespace Cedar.Projections
 {
     using System.Threading.Tasks;
 

@@ -1,7 +1,6 @@
 ﻿namespace Cedar.Projections
 {
     using System.Threading.Tasks;
-    using Cedar.Handlers;
 
     /// <summary>
     /// Represents an in-memory <see cref="ICheckpointRepository"/>.

@@ -5,11 +5,11 @@
     using System.Linq;
     using EnsureThat;
 
-    public class ProjectionHandlerResolver : IProjectionHandlerResolver
+    public class EventHandlerResolver : IEventHandlerResolver
     {
         private readonly Dictionary<Type, List<object>> _handlers = new Dictionary<Type, List<object>>();
 
-        public ProjectionHandlerResolver(params ProjectionHandlerModule[] handlerModules)
+        public EventHandlerResolver(params EventHandlerModule[] handlerModules)
         {
             Ensure.That(handlerModules).IsNotNull();
 
@@ -25,10 +25,10 @@
             }
         }
 
-        public IEnumerable<ProjectionHandler<TMessage>> ResolveAll<TMessage>() where TMessage : class
+        public IEnumerable<Handler<TMessage>> ResolveAll<TMessage>() where TMessage : class
         {
-            return _handlers[typeof(ProjectionHandler<TMessage>)]
-                .Select(handler => (ProjectionHandler<TMessage>) handler);
+            return _handlers[typeof(Handler<TMessage>)]
+                .Select(handler => (Handler<TMessage>) handler);
         }
     }
 }

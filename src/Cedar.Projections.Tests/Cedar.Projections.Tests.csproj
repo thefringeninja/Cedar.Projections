@@ -57,7 +57,7 @@
     </Compile>
     <Compile Include="InMemoryCheckpointRepository.cs" />
     <Compile Include="ProjectionTests.cs" />
-    <Compile Include="TestProjectionDispatcher.cs" />
+    <Compile Include="TestEventDispatcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

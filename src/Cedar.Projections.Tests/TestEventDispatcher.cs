@@ -3,12 +3,11 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Cedar.Handlers;
 
-    internal class TestProjectionDispatcher : ProjectionDispatcher
+    internal class TestEventDispatcher : EventDispatcher
     {
-        public TestProjectionDispatcher(IProjectionHandlerResolver handlerResolver, ICheckpointRepository checkpointRepository)
-            : base(handlerResolver, checkpointRepository)
+        public TestEventDispatcher(IEventHandlerResolver eventHandlerResolver, ICheckpointRepository checkpointRepository)
+            : base(eventHandlerResolver, checkpointRepository)
         { }
 
         protected override Task OnStart(string fromCheckpoint)

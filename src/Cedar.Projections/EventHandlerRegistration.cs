@@ -2,12 +2,12 @@
 {
     using System;
 
-    internal class ProjectionHandlerRegistration
+    internal class EventHandlerRegistration
     {
         private readonly object _handlerInstance;
         private readonly Type _registrationType;
 
-        internal ProjectionHandlerRegistration(Type registrationType, object handlerInstance)
+        internal EventHandlerRegistration(Type registrationType, object handlerInstance)
         {
             _registrationType = registrationType;
             _handlerInstance = handlerInstance;

@@ -25,6 +25,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\Cedar.Projections.xml</DocumentationFile>
+    <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,6 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\Cedar.Projections.xml</DocumentationFile>
+    <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\SharedAssemblyInfo.cs">
@@ -43,14 +45,16 @@
     <Compile Include="ICheckpointRepository.cs" />
     <Compile Include="InterlockedBoolean.cs" />
     <Compile Include="InterlockedBooleanExtensions.cs" />
-    <Compile Include="IProjectionHandlerBuilder.cs" />
-    <Compile Include="IProjectionHandlerResolver.cs" />
-    <Compile Include="ProjectionDispatcher.cs" />
-    <Compile Include="ProjectionEvent.cs" />
-    <Compile Include="ProjectionHandlerBuilderExtensions.cs" />
-    <Compile Include="ProjectionHandlerModule.cs" />
-    <Compile Include="ProjectionHandlerRegistration.cs" />
-    <Compile Include="ProjectionHandlerResolver.cs" />
+    <Compile Include="IEventHandlerBuilder.cs" />
+    <Compile Include="IEventHandlerResolver.cs" />
+    <Compile Include="EventDispatcher.cs" />
+    <Compile Include="EventMessage.cs" />
+    <Compile Include="Handler.cs" />
+    <Compile Include="EventHandlerBuilderExtensions.cs" />
+    <Compile Include="EventHandlerModule.cs" />
+    <Compile Include="EventHandlerRegistration.cs" />
+    <Compile Include="EventHandlerResolver.cs" />
+    <Compile Include="EventHandlerSync.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

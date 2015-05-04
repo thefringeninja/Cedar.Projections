@@ -6,23 +6,22 @@
     using System.Reflection;
     using System.Threading;
     using System.Threading.Tasks;
-    using Cedar.Handlers;
     using Cedar.Projections.Logging;
 
-    public abstract class ProjectionDispatcher : IDisposable
+    public abstract class EventDispatcher : IDisposable
     {
-        private static readonly ILog s_logger = LogProvider.For<ProjectionDispatcher>();
-        private readonly IProjectionHandlerResolver _handlerResolver;
+        private static readonly ILog s_logger = LogProvider.For<EventDispatcher>();
+        private readonly IEventHandlerResolver _eventHandlerResolver;
         private readonly ICheckpointRepository _checkpointRepository;
         private readonly InterlockedBoolean _isStarted = new InterlockedBoolean();
         private readonly InterlockedBoolean _isDisposed = new InterlockedBoolean();
         private readonly CancellationTokenSource _disposed = new CancellationTokenSource();
         
-        protected ProjectionDispatcher(
-            IProjectionHandlerResolver handlerResolver,
+        protected EventDispatcher(
+            IEventHandlerResolver eventHandlerResolver,
             ICheckpointRepository checkpointRepository)
         {
-            _handlerResolver = handlerResolver;
+            _eventHandlerResolver = eventHandlerResolver;
             _checkpointRepository = checkpointRepository;
         }
 
@@ -49,7 +48,7 @@
             object @event)
         {
             var eventType = @event.GetType();
-            var dispatchInternalMethod = typeof(ProjectionDispatcher).GetRuntimeMethods()
+            var dispatchInternalMethod = typeof(EventDispatcher).GetRuntimeMethods()
                 .Single(m => m.Name.Equals("DispatchInternal", StringComparison.Ordinal))
                 .MakeGenericMethod(eventType);
 
@@ -85,9 +84,9 @@
             IReadOnlyDictionary<string, object> headers,
             T @event) where T : class
         {
-            var projectionEvent = new ProjectionEvent<T>(streamid, eventId, version, timeStamp, headers, @event);
+            var projectionEvent = new EventMessage<T>(streamid, eventId, version, timeStamp, headers, @event);
 
-            var handlers = _handlerResolver.ResolveAll<T>();
+            var handlers = _eventHandlerResolver.ResolveAll<T>();
 
             foreach(var handler in handlers)
             {
