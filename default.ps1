@@ -83,7 +83,7 @@ function FindTool {
 }
 
 function Get-PackageConfigs {
-    $packages = gci $srcDir -Recurse "packages.config" -ea SilentlyContinue | foreach-object { $_.FullName }
+    return gci $srcDir -Recurse "packages.config" -ea SilentlyContinue | foreach-object { $_.FullName }
 }
 
 function EnsureDirectory {
