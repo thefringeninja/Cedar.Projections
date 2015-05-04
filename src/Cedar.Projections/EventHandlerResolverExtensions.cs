@@ -20,7 +20,7 @@
             DateTimeOffset timeStamp,
             IReadOnlyDictionary<string, object> headers,
             object @event,
-            CancellationToken cancellationToken)
+            CancellationToken cancellationToken = default(CancellationToken))
         {
             var eventType = @event.GetType();
             var dispatchMethod = s_dispatchInternalMethod.MakeGenericMethod(eventType);
