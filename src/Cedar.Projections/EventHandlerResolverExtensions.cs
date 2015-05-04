@@ -46,7 +46,10 @@
             var eventMessage = new EventMessage<T>(streamid, eventId, version, timeStamp, headers, @event);
             var handlers = eventHandlerResolver.ResolveAll<T>();
 
-            await Task.WhenAll(handlers.Select(h => h(eventMessage, cancellationToken)));
+            foreach(var handler in handlers)
+            {
+                await handler(eventMessage, cancellationToken);
+            }
         }
     }
 }
