@@ -47,7 +47,7 @@
     <Compile Include="InterlockedBooleanExtensions.cs" />
     <Compile Include="IEventHandlerBuilder.cs" />
     <Compile Include="IEventHandlerResolver.cs" />
-    <Compile Include="EventDispatcher.cs" />
+    <Compile Include="EventHandlerResolverExtensions.cs" />
     <Compile Include="EventMessage.cs" />
     <Compile Include="Handler.cs" />
     <Compile Include="EventHandlerBuilderExtensions.cs" />

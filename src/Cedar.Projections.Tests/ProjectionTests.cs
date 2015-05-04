@@ -14,7 +14,7 @@
         [Fact]
         public void Can_resolve_handlers()
         {
-            var handlerResolver = new EventHandlerResolver(new TestEventModule(new List<object>()));
+            var handlerResolver = new EventHandlerResolver(new TestEventModule(_ => { }));
             var handlers = handlerResolver.ResolveAll<TestEvent>().ToArray();
 
             handlers.Length.Should().Be(1);
@@ -24,7 +24,7 @@
         public void Can_invoke_handlers()
         {
             List<object> projectedEvents = new List<object>();
-            var handlerResolver = new EventHandlerResolver(new TestEventModule(projectedEvents));
+            var handlerResolver = new EventHandlerResolver(new TestEventModule(projectedEvents.Add));
             var handlers = handlerResolver.ResolveAll<TestEvent>().ToArray();
             var projectionEvent = new EventMessage<TestEvent>("streamid", Guid.NewGuid(), 1, DateTimeOffset.UtcNow, null, new TestEvent());
 
@@ -40,18 +40,14 @@
         public async Task Can_dispatch_event()
         {
             List<object> projectedEvents = new List<object>();
-            var handlerResolver = new EventHandlerResolver(new TestEventModule(projectedEvents));
+            var handlerResolver = new EventHandlerResolver(new TestEventModule(projectedEvents.Add));
             const string streamId = "stream";
             var eventId = Guid.NewGuid();
             const int version = 2;
             var timeStamp = DateTimeOffset.UtcNow;
             var headers = new ReadOnlyDictionary<string, object>(new Dictionary<string, object>());
 
-            using (var dispatcher = new TestEventDispatcher(handlerResolver, new InMemoryCheckpointRepository()))
-            {
-                await dispatcher.Start();
-                await dispatcher.DoDispatch(streamId, eventId, version, timeStamp, "checkpoint", headers, new TestEvent());
-            }
+            await handlerResolver.Dispatch(streamId, eventId, version, timeStamp, headers, new TestEvent(), CancellationToken.None);
 
             projectedEvents.Count.Should().Be(1);
 
@@ -65,11 +61,11 @@
 
         private class TestEventModule : EventHandlerModule
         {
-            public TestEventModule(List<object> projectedEvents)
+            public TestEventModule(Action<object> onProjected)
             {
                 For<TestEvent>()
                     .Pipe(next => next)
-                    .Handle(projectedEvents.Add);
+                    .Handle(em => onProjected(em));
             }
         }
 
