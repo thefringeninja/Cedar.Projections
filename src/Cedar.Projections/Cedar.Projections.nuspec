@@ -1,0 +1,26 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Cedar.Projections</id>
+        <version>0.0.0.0</version>
+        <authors>Damian Hickey</authors>
+        <owners>Damian Hickey</owners>
+        <projectUrl>https://github.com/damianh/Cedar.Projections</projectUrl>
+        <licenseUrl>https://github.com/damianh/Cedar.Projections/blob/master/LICENSE</licenseUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <title>Cedar - Projections</title>
+        <description>
+            Library to assist with projections of Domain Events in CQRS applications.
+        </description>
+        <tags>cqrs event-sourcing domain-driven-design</tags>
+        <frameworkAssemblies />
+        <releaseNotes/>
+        <dependencies>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin\Release\Cedar.Projections.dll" target="lib\Portable-Net45+Win8+WP8+WPA81" />
+        <file src="bin\Release\Cedar.Projections.pdb" target="lib\Portable-Net45+Win8+WP8+WPA81" />
+        <file src="bin\Release\Cedar.Projections.xml" target="lib\Portable-Net45+Win8+WP8+WPA81" />
+    </files>
+</package>
