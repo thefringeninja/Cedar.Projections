@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cedar.Projections", "Cedar.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cedar.Projections.Tests", "Cedar.Projections.Tests\Cedar.Projections.Tests.csproj", "{2D68D7D9-34FB-46F6-98CD-9B51C625056B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cedar.Projections.Example.RavenDb", "Cedar.Projections.Example.RavenDb\Cedar.Projections.Example.RavenDb.csproj", "{995E8B87-A3C5-478A-96D1-D4465786F301}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{2D68D7D9-34FB-46F6-98CD-9B51C625056B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D68D7D9-34FB-46F6-98CD-9B51C625056B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D68D7D9-34FB-46F6-98CD-9B51C625056B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{995E8B87-A3C5-478A-96D1-D4465786F301}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{995E8B87-A3C5-478A-96D1-D4465786F301}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{995E8B87-A3C5-478A-96D1-D4465786F301}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{995E8B87-A3C5-478A-96D1-D4465786F301}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
