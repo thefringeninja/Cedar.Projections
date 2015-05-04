@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using EnsureThat;
 
     public class ProjectionHandlerResolver : IProjectionHandlerResolver
     {
@@ -10,6 +11,8 @@
 
         public ProjectionHandlerResolver(params ProjectionHandlerModule[] handlerModules)
         {
+            Ensure.That(handlerModules).IsNotNull();
+
             foreach(var registration in handlerModules.SelectMany(module => module.HandlerRegistrations))
             {
                 List<object> handlers;
