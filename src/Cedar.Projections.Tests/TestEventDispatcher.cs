@@ -10,11 +10,6 @@
             : base(eventHandlerResolver, checkpointRepository)
         { }
 
-        protected override Task OnStart(string fromCheckpoint)
-        {
-            return Task.FromResult(0);
-        }
-
         internal Task DoDispatch(
             string streamId,
             Guid eventId,

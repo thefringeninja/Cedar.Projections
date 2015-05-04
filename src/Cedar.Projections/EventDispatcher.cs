@@ -33,10 +33,7 @@
             }
 
             string checkpointToken = await _checkpointRepository.Get();
-            await OnStart(checkpointToken);
         }
-
-        protected abstract Task OnStart(string fromCheckpoint);
 
         protected async Task Dispatch(
             string streamId,
